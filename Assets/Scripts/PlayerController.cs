@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
   [Header("References")]
   public CharacterController controller;
+  public GameObject cameraController;
 
   [Header("KeyBinds")]
   public KeyCode jumpKey = KeyCode.Space;
@@ -58,15 +59,21 @@ public class PlayerController : MonoBehaviour {
   }
 
   private void HitTheWall() {
+    RaycastHit hit;
+
     if (Physics.Raycast(
       transform.position,
       transform.forward,
+      out hit,
       0.7f,
       wallMasks
       )) {
+      int wallType = hit.collider.gameObject.name[5] - '0' - 1;
+      cameraController.GetComponent<CameraController>().SwitchCamera(wallType);
+
       transform.Rotate(Vector3.up, horizontalInput * -90);
     }
-
+  
     Debug.DrawRay(transform.position, transform.forward * 0.7f, Color.green);
   }
 
@@ -76,6 +83,10 @@ public class PlayerController : MonoBehaviour {
     }
     if (Input.GetKeyDown(jumpKey) && isGrounded) {
       _verticalVelocity.y += Mathf.Sqrt(jumpHeight * 2 * gravity);
+    }
+
+    if (Input.GetKey(KeyCode.F) && !isGrounded) {
+      _verticalVelocity.y += 10f * Time.deltaTime;
     }
 
     _verticalVelocity.y -= gravity * Time.deltaTime;
