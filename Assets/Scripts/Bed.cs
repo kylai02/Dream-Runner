@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bed : MonoBehaviour
 {
+  public GameObject video;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,8 +18,11 @@ public class Bed : MonoBehaviour
     }
 
   private void OnTriggerEnter(Collider other) {
-    if (other.gameObject.tag == "Player") {
-        Debug.Log("H");
-    } 
+    Debug.Log(other.gameObject.name);
+    video.SetActive(true);
+    // if (other.gameObject.tag == "Player") {
+    //     Debug.Log("H");
+    // } 
+    PlayerPrefs.DeleteAll();
   }
 }

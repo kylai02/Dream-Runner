@@ -11,12 +11,14 @@ public class StartMenu : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         
     }
 
   public void StartBtn() {
     startMenu.SetActive(false);
+    PlayerPrefs.SetInt("keyNum", 0);
+    PlayerPrefs.SetInt("chestNum", 0);
+    Debug.Log(PlayerPrefs.GetInt("chestNum"));
   }
 }

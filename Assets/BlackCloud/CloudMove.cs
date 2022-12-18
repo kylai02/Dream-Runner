@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CloudMove : MonoBehaviour
 {
-    private float MoveSpeed = 0.04f;
+    private float MoveSpeed = 0.01f;
     // Start is called before the first frame update
     void Start(){}
 

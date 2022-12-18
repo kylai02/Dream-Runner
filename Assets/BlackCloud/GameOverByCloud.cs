@@ -13,6 +13,8 @@ public class GameOverByCloud : MonoBehaviour
     private void OnTriggerEnter(Collider collision) {
         if (collision.tag == "Cloud") {
             Debug.Log("Die");
+        GameObject.Find("GameManager").GetComponent<GameManager>().GameOver();
         }
+
     }
 }
