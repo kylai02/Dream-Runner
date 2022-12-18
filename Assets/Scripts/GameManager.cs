@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
   public D2FogsPE lightFog;
   public float FogOutTime;
   private float defaultFogOutTime;
+  public int localKey;
+  public int localChest;
 
   public float changeSceneY;
   [SerializeField]bool changeScene;
@@ -31,6 +33,8 @@ public class GameManager : MonoBehaviour
     defaultFogOutTime = FogOutTime;
     darkFog.Density = 2.51f;
     lightFog.Density = 1.42f;
+    localKey = 0;
+    localChest = 0;
   }
 
   // Update is called once per frame
@@ -45,6 +49,7 @@ public class GameManager : MonoBehaviour
     keyNum++;
     keyNumUI.text = (keyNum).ToString();
     PlayerPrefs.SetInt("keyNum", keyNum);
+    localKey++;
   }
 
   public void GetAChest()
@@ -52,6 +57,7 @@ public class GameManager : MonoBehaviour
     chestNum++;
     chestNumUI.text = (chestNum).ToString();
     PlayerPrefs.SetInt("chestNum", chestNum);
+    localKey++;
   }
 
   private void FogIn()
@@ -74,5 +80,13 @@ public class GameManager : MonoBehaviour
       darkFog.Density = 2.51f * (FogOutTime / defaultFogOutTime);
       lightFog.Density = 1.42f * (FogOutTime / defaultFogOutTime);
     }
+  }
+
+  public void GameOver() {
+    keyNum -= localKey;
+    chestNum -= localChest;
+    PlayerPrefs.SetInt("keyNum", keyNum);
+    PlayerPrefs.SetInt("chestNum", chestNum);
+    Time.timeScale = 0;
   }
 }
