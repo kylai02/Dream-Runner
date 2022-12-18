@@ -31,6 +31,7 @@ public class HitByTrap : MonoBehaviour
     }
         
     private void OnTriggerEnter(Collider collision) {
+        Debug.Log(collision.name);
         if (collision.gameObject.tag == "Trap" && !isBack) {
             Debug.Log("Die");
             isBack = true;

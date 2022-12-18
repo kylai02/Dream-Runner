@@ -12,11 +12,11 @@ public class TrapTrigger : MonoBehaviour
     void Update() { }
     
     private void OnTriggerEnter() {
-        Invoke(nameof(TrapActive), 3f);
+        Invoke(nameof(TrapActive), 2f);
     }
 
     private void TrapActive() {
-        Debug.Log(TargetTrap.name);
+        // Debug.Log(TargetTrap.name);
         TargetTrap.SetActive(true);
     }
 }
