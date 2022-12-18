@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour {
       groundMasks
     );
   }
-
+  
   private void HitTheWall() {
     RaycastHit hit;
 

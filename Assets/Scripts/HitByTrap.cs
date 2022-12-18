@@ -8,7 +8,6 @@ public class HitByTrap : MonoBehaviour
 {
     public PlayerController playerController;
     public bool isBack = false;
-    public float upV;
     // Start is called before the first frame update
     void Start() {} 
 
@@ -33,7 +32,7 @@ public class HitByTrap : MonoBehaviour
         
     private void OnTriggerEnter(Collider collision) {
         if (collision.gameObject.tag == "Trap" && !isBack) {
-            Debug.Log("Trap");
+            Debug.Log("Die");
             isBack = true;
             //Vector3 pos = transform.position;
             //pos -= transform.forward * 1000;
@@ -42,15 +41,9 @@ public class HitByTrap : MonoBehaviour
 
             Vector3 final = new Vector3(transform.position.x, transform.position.y, transform.position.z) + transform.forward * (-5);
             Vector3 mid = new Vector3(transform.position.x, transform.position.y, transform.position.z) + (-transform.forward) + transform.up;
-            seq.Append(gameObject.transform.DOMove(mid, 0.75f).SetEase(Ease.Linear))
+            seq
+            .Append(gameObject.transform.DOMove(mid, 0.75f).SetEase(Ease.Linear))
             .Append(gameObject.transform.DOMove(final, 0.1f).SetEase(Ease.Linear).OnComplete(() => {isBack = false;}));
-
-            // Vector3 v = (transform.forward + transform.up).normalized * 0.1f;
-            // GetComponent<Rigidbody>().AddForce(v, ForceMode.Impulse);
-            // Invoke(nameof(f), 3f);
         }
-    }
-    private void f() {
-        isBack = false;
     }
 }

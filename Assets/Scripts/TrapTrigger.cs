@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TrapTrigger : MonoBehaviour
 {
-    public GameObject Trap;
+    public GameObject TargetTrap;
     // Start is called before the first frame update
     void Start() { }
 
@@ -12,6 +12,11 @@ public class TrapTrigger : MonoBehaviour
     void Update() { }
     
     private void OnTriggerEnter() {
-        Trap.SetActive(true);
+        Invoke(nameof(TrapActive), 3f);
+    }
+
+    private void TrapActive() {
+        Debug.Log(TargetTrap.name);
+        TargetTrap.SetActive(true);
     }
 }
