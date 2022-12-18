@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour {
+  public GameObject player;
   public GameObject camera1;
   public GameObject camera2; 
   public GameObject camera3; 
@@ -11,13 +12,20 @@ public class CameraController : MonoBehaviour {
 
   // Start is called before the first frame update
   void Start() {
+    Debug.Log("start");
     // InvokeRepeating(nameof(Change), 3f, 3f);s
   }
 
   // Update is called once per frame
   void Update() {
+    Debug.Log("here");
     transform.position = new Vector3(
-        transform.position.x, transform.position.y + 1 * Time.deltaTime, transform.position.z);
+      transform.position.x,
+      player.transform.position.y + 27.68f,
+      transform.position.z
+    );
+
+    Debug.Log(player.transform.position.y + 11.75f);
   }
 
   public void SwitchCamera(int type) {
