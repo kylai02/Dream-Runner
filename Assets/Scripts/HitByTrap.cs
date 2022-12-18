@@ -8,7 +8,6 @@ public class HitByTrap : MonoBehaviour
 {
     public PlayerController playerController;
     public bool isBack = false;
-    public float upV;
     // Start is called before the first frame update
     void Start() {} 
 
@@ -33,7 +32,7 @@ public class HitByTrap : MonoBehaviour
         
     private void OnTriggerEnter(Collider collision) {
         if (collision.gameObject.tag == "Trap" && !isBack) {
-            Debug.Log("Trap");
+            Debug.Log("Die");
             isBack = true;
             //Vector3 pos = transform.position;
             //pos -= transform.forward * 1000;
