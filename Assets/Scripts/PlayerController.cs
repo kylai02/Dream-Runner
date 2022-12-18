@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour {
       transform.position,
       transform.forward,
       out hit,
-      0.7f,
+      1.2f,
       wallMasks
       )) {
       int wallType = hit.collider.gameObject.name[5] - '0' - 1;
@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour {
       transform.Rotate(Vector3.up, horizontalInput * -90);
     }
   
-    Debug.DrawRay(transform.position, transform.forward * 0.7f, Color.green);
+    Debug.DrawRay(transform.position, transform.forward * 1.2f, Color.green);
   }
 
   private void OnCollisionEnter(Collision other) {
