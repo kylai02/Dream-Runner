@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
   [Header("References")]
+  public GameManager gameManager;
   public CharacterController controller;
   public GameObject cameraController;
 
@@ -60,25 +61,6 @@ public class PlayerController : MonoBehaviour {
     controller.Move(velocity * Time.deltaTime);
   }
 
-  private void HitTheWall() {
-    RaycastHit hit;
-
-    if (Physics.Raycast(
-      transform.position,
-      transform.forward,
-      out hit,
-      0.7f,
-      wallMasks
-      )) {
-      int wallType = hit.collider.gameObject.name[5] - '0' - 1;
-      cameraController.GetComponent<CameraController>().SwitchCamera(wallType);
-
-      transform.Rotate(Vector3.up, horizontalInput * -90);
-    }
-  
-    Debug.DrawRay(transform.position, transform.forward * 0.7f, Color.green);
-  }
-
   private void JumpAndGravity() {
     if (isGrounded && _verticalVelocity.y < 0) {
       _verticalVelocity.y = -2f;
@@ -101,5 +83,33 @@ public class PlayerController : MonoBehaviour {
       playerHeight * 0.5f + 0.2f,
       groundMasks
     );
+  }
+  
+  private void HitTheWall() {
+    RaycastHit hit;
+
+    if (Physics.Raycast(
+      transform.position,
+      transform.forward,
+      out hit,
+      1.2f,
+      wallMasks
+      )) {
+      int wallType = hit.collider.gameObject.name[5] - '0' - 1;
+      cameraController.GetComponent<CameraController>().SwitchCamera(wallType);
+
+      transform.Rotate(Vector3.up, horizontalInput * -90);
+    }
+  
+    Debug.DrawRay(transform.position, transform.forward * 1.2f, Color.green);
+  }
+
+  private void OnCollisionEnter(Collision other) {
+    Debug.Log(other.gameObject.tag);
+    if (other.gameObject.tag == "Key") {
+      Debug.Log("key");
+      Destroy(other.gameObject);
+      gameManager.GetAKey();
+    }
   }
 }
