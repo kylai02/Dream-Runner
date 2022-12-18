@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
   [Header("References")]
+  public GameManager gameManager;
   public CharacterController controller;
   public GameObject cameraController;
 
@@ -101,5 +102,12 @@ public class PlayerController : MonoBehaviour {
     }
   
     Debug.DrawRay(transform.position, transform.forward * 0.7f, Color.green);
+  }
+
+  private void OnCollisionEnter(Collision other) {
+    if (other.gameObject.tag == "Key") {
+      Destroy(other.gameObject);
+      gameManager.GetAKey();
+    }
   }
 }
