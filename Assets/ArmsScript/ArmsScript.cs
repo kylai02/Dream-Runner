@@ -9,8 +9,8 @@ public class ArmsScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UmbDefence = this.gameObject.transform.GetChild(0).gameObject;
-        UmbUnfurl = this.gameObject.transform.GetChild(1).gameObject;
+        UmbDefence = this.gameObject.transform.GetChild(1).gameObject;
+        UmbUnfurl = this.gameObject.transform.GetChild(2).gameObject;
 
     }
 
