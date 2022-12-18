@@ -36,7 +36,9 @@ public class PlayerController : MonoBehaviour {
   void Update() {
     GroundedCheck();
     JumpAndGravity();
-    Move();
+    if(!GetComponent<HitByTrap>().isBack){
+        Move();
+    }
 
     HitTheWall();
   }
@@ -99,5 +101,24 @@ public class PlayerController : MonoBehaviour {
       playerHeight * 0.5f + 0.2f,
       groundMasks
     );
+  }
+
+    private void HitTheWall() {
+    RaycastHit hit;
+
+    if (Physics.Raycast(
+      transform.position,
+      transform.forward,
+      out hit,
+      0.7f,
+      wallMasks
+      )) {
+      int wallType = hit.collider.gameObject.name[5] - '0' - 1;
+      cameraController.GetComponent<CameraController>().SwitchCamera(wallType);
+
+      transform.Rotate(Vector3.up, horizontalInput * -90);
+    }
+  
+    Debug.DrawRay(transform.position, transform.forward * 0.7f, Color.green);
   }
 }
