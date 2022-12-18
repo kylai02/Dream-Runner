@@ -24,8 +24,10 @@ public class GameManager : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-    keyNum = 0;
-    chestNum = 0;
+    keyNum = PlayerPrefs.GetInt("keyNum");
+    chestNum = PlayerPrefs.GetInt("chestNum");
+    keyNumUI.text = (keyNum).ToString();
+    chestNumUI.text = (chestNum).ToString();
     defaultFogOutTime = FogOutTime;
     darkFog.Density = 2.51f;
     lightFog.Density = 1.42f;
@@ -36,27 +38,20 @@ public class GameManager : MonoBehaviour
   {
     FogIn();
     FogOut();
-
-    // if (player.transform.position.y >= changeSceneY)
-    // {
-    //   if (changeScene)
-    //     return;
-    //   changeScene = true;
-    //   SceneManager.LoadScene(nextScene);
-      
-    // }
   }
 
   public void GetAKey()
   {
     keyNum++;
     keyNumUI.text = (keyNum).ToString();
+    PlayerPrefs.SetInt("keyNum", keyNum);
   }
 
   public void GetAChest()
   {
     chestNum++;
     chestNumUI.text = (chestNum).ToString();
+    PlayerPrefs.SetInt("chestNum", chestNum);
   }
 
   private void FogIn()
