@@ -105,11 +105,13 @@ public class PlayerController : MonoBehaviour {
   }
 
   private void OnCollisionEnter(Collision other) {
-    Debug.Log(other.gameObject.tag);
     if (other.gameObject.tag == "Key") {
-      Debug.Log("key");
       Destroy(other.gameObject);
       gameManager.GetAKey();
+    }
+    else if (other.gameObject.tag == "Chest") {
+      Destroy(other.gameObject);
+      gameManager.GetAChest();
     }
   }
 }
