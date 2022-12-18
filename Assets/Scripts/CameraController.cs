@@ -12,7 +12,6 @@ public class CameraController : MonoBehaviour {
 
   // Start is called before the first frame update
   void Start() {
-    Debug.Log("start");
     // InvokeRepeating(nameof(Change), 3f, 3f);s
   }
 

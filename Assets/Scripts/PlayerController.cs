@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour {
       transform.position,
       transform.forward,
       out hit,
-      1.2f,
+      1.25f,
       wallMasks
       )) {
       int wallType = hit.collider.gameObject.name[5] - '0' - 1;
@@ -101,15 +101,17 @@ public class PlayerController : MonoBehaviour {
       transform.Rotate(Vector3.up, horizontalInput * -90);
     }
   
-    Debug.DrawRay(transform.position, transform.forward * 1.2f, Color.green);
+    Debug.DrawRay(transform.position, transform.forward * 1.25f, Color.green);
   }
 
   private void OnCollisionEnter(Collision other) {
-    Debug.Log(other.gameObject.tag);
     if (other.gameObject.tag == "Key") {
-      Debug.Log("key");
       Destroy(other.gameObject);
       gameManager.GetAKey();
+    }
+    else if (other.gameObject.tag == "Chest") {
+      Destroy(other.gameObject);
+      gameManager.GetAChest();
     }
   }
 }
