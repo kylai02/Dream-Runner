@@ -41,15 +41,9 @@ public class HitByTrap : MonoBehaviour
 
             Vector3 final = new Vector3(transform.position.x, transform.position.y, transform.position.z) + transform.forward * (-5);
             Vector3 mid = new Vector3(transform.position.x, transform.position.y, transform.position.z) + (-transform.forward) + transform.up;
-            seq.Append(gameObject.transform.DOMove(mid, 0.75f).SetEase(Ease.Linear))
+            seq
+            .Append(gameObject.transform.DOMove(mid, 0.75f).SetEase(Ease.Linear))
             .Append(gameObject.transform.DOMove(final, 0.1f).SetEase(Ease.Linear).OnComplete(() => {isBack = false;}));
-
-            // Vector3 v = (transform.forward + transform.up).normalized * 0.1f;
-            // GetComponent<Rigidbody>().AddForce(v, ForceMode.Impulse);
-            // Invoke(nameof(f), 3f);
         }
-    }
-    private void f() {
-        isBack = false;
     }
 }
