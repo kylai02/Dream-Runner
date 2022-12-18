@@ -31,7 +31,9 @@ public class PlayerController : MonoBehaviour {
   void Update() {
     GroundedCheck();
     JumpAndGravity();
-    Move();
+    if(!GetComponent<HitByTrap>().isBack){
+        Move();
+    }
   }
   
   private void Move() {
