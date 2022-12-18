@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour {
   public GameObject player;
-  public float speed;
     // Start is called before the first frame update
   void Start() {}
 
@@ -12,12 +11,12 @@ public class CameraMove : MonoBehaviour {
   void Update() {
     transform.position = new Vector3(
       transform.position.x, 
-      transform.position.y + speed * Time.deltaTime, 
+      player.transform.position.y + 11.75f, 
       transform.position.z
     );
 
-    if (player.transform.position.y <= transform.position.y - 7) {
-      Debug.Log("GameOver");
-    }
+    // if (player.transform.position.y <= transform.position.y - 7) {
+    //   Debug.Log("GameOver");
+    // }
   }
 }
