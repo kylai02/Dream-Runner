@@ -18,14 +18,11 @@ public class CameraController : MonoBehaviour {
 
   // Update is called once per frame
   void Update() {
-    Debug.Log("here");
     transform.position = new Vector3(
       transform.position.x,
       player.transform.position.y + 27.68f,
       transform.position.z
     );
-
-    Debug.Log(player.transform.position.y + 11.75f);
   }
 
   public void SwitchCamera(int type) {
